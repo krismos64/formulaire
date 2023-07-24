@@ -2,6 +2,7 @@
 $firstname = $name = $email = $phone = $message = "";
 $firstnameError = $nameError = $emailError = $phoneError = $messageError = "";
 $isSuccess = false;
+$emailto = "c.mostefaoui@yahoo.fr";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -11,35 +12,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $phone = verifyInput($_POST["phone"]);
   $message = verifyInput($_POST["message"]);
   $isSuccess = true;
+  $emailText = "";
 
 if(empty($firstname))
 {
   $firstnameError = "Donnez-nous votre prénom !";
   $isSuccess = false;
 }
+else
+{
+  $emailText .= "Firstname: $firstname\n";
+}
+
 if(empty($name))
 {
   $nameError = "Donnez-nous votre nom !";
   $isSuccess = false;
 }
-if(empty($message))
+else
 {
-  $messageError = "Vous n'avez rien à nous dire ?";
-  $isSuccess = false;
+  $emailText .= "name: $name\n";
 }
 if(!isEmail($email))
 {
   $emailError = "Ce n'est pas une adresse mail valide !";
   $isSuccess = false;
 }
+else
+{
+  $emailText .= "email: $email\n";
+}
 if(!isPhone($phone))
 {
   $phoneError = "Ce n'est pas un numéro valide";
   $isSuccess = false;
 }
+else
+{
+  $emailText .= "phone: $phone\n";
+}
+if(empty($message))
+{
+  $messageError = "Vous n'avez rien à nous dire ?";
+  $isSuccess = false;
+}
+else
+{
+  $emailText .= "message: $message\n";
+}
 if ($isSuccess) 
 {
-  // Envoi de l'email
+  $headers = "From: $firstname $name <email>\r\nReply-to: $email";
+  mail($emailto, "Un message de votre site", $emailText, $headers);
+  $firstname = $name = $email = $phone = $message = "";
 }
 
 }
