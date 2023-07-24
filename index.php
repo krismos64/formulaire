@@ -1,6 +1,7 @@
 <?php
 $firstname = $name = $email = $phone = $message = "";
 $firstnameError = $nameError = $emailError = $phoneError = $messageError = "";
+$isSuccess = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -9,27 +10,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   $email = verifyInput($_POST["email"]);
   $phone = verifyInput($_POST["phone"]);
   $message = verifyInput($_POST["message"]);
-
+  $isSuccess = true;
 
 if(empty($firstname))
 {
   $firstnameError = "Donnez-nous votre prénom !";
+  $isSuccess = false;
 }
 if(empty($name))
 {
   $nameError = "Donnez-nous votre nom !";
+  $isSuccess = false;
 }
 if(empty($message))
 {
   $messageError = "Vous n'avez rien à nous dire ?";
+  $isSuccess = false;
 }
 if(!isEmail($email))
 {
   $emailError = "Ce n'est pas une adresse mail valide !";
+  $isSuccess = false;
 }
 if(!isPhone($phone))
 {
   $phoneError = "Ce n'est pas un numéro valide";
+  $isSuccess = false;
+}
+if ($isSuccess) 
+{
+  // Envoi de l'email
 }
 
 }
@@ -153,8 +163,8 @@ function verifyInput($var)
                 <input type="submit" class="button1" value="Envoyer" />
               </div>
             </div>
-            <p class="thank-you">
-              Votre message a bien été envoyé. Merci de nous avoir contacté :)
+            <p class="thank-you" style="display:<?php if($isSuccess) echo 'block'; else echo 'none'; ?>">
+              Votre message a bien été envoyé. Merci de nous avoir contacté !
             </p>
           </form>
         </div>
