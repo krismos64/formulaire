@@ -6,40 +6,48 @@ body {
 .divider {
   width: 100px;
   height: 2px;
-  background: #152670;
-  margin: 10px auto;
+  background: #ffa500;
+  margin: 0 auto;
 }
 .heading {
   text-align: center;
   margin-bottom: 60px;
 }
-.heading h2 {
+h2 {
   text-transform: uppercase;
   font-weight: bold;
   color: #fff;
 }
 #contact-form {
   font-size: 20px;
-  background: #2e1fa3;
+  background: #fff;
   padding: 40px;
   border-radius: 10px;
 }
+/*---  NEW  ------*/
 .blue {
-  color: #152670;
+  color: #0069d6;
 }
 .form-control {
   height: 50px;
   font-size: 18px;
 }
-.comment {
-  font-style: italic;
-  font-size: 18px;
-  color: #cc3d3d;
-  height: 25px;
-}
-#contact-form input [type="submit"] {
+#contact-form input[type="submit"] {
   margin: 40px auto 0px;
   display: block;
+}
+.comments {
+  font-style: italic;
+  font-size: 18px;
+  color: #d82c2e;
+  height: 25px;
+}
+#contact-form .thank-you {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 22px;
+  color: firebrick;
 }
 .button1 {
   border: 1px solid #ddd;
@@ -55,10 +63,4 @@ body {
 .button1:hover {
   background: #333;
   border-color: #ffa500;
-}
-.thank-you {
-  text-align: center;
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 22px;
 }
